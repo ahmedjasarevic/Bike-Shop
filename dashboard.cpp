@@ -19,8 +19,18 @@ Dashboard::Dashboard(QWidget *parent) :
     database.setUserName("root");
     database.setPassword("");
     database.setDatabaseName("qt5register");
-      ui->stackedWidget->setCurrentIndex(0);
+    if(database.open())
+{
+        QString welcome;
+        QString mail;
+         QSqlQuery query("SELECT ime FROM users WHERE id = 1");
+         while (query.next()) {
+             welcome.append("Dobrodosao " + query.value(0).toString() + " ");
 
+         }
+         ui->dobrodosli->setText(welcome);
+    }
+      ui->stackedWidget->setCurrentIndex(0);
       if(database.open())
   {
           QSqlQueryModel * modal = new QSqlQueryModel();
@@ -38,6 +48,7 @@ Dashboard::Dashboard(QWidget *parent) :
 
 
 }
+
 
 Dashboard::~Dashboard()
 {
