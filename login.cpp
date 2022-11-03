@@ -42,6 +42,7 @@ void Login::on_pushButton_clicked()
         while(query.next()){
             QString mailfromDB = query.value(2).toString();
             QString passfromDB = query.value(3).toString();
+           Dashboard *w = new Dashboard(mailfromDB, this);
             if(mailfromDB == mail && passfromDB == pass){
                  QMessageBox::information(this,"Uspjesno","Uspjesan login");
                  Dashboard dhboard;

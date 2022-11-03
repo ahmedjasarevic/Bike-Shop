@@ -3,6 +3,10 @@
 #include <QPixmap>
 #include <QPalette>
 
+Dashboard::Dashboard(QString text, QWidget *parent) : QDialog(parent)
+{
+    mailPrvi = text;
+}
 
 Dashboard::Dashboard(QWidget *parent) :
     QDialog(parent),
@@ -22,8 +26,8 @@ Dashboard::Dashboard(QWidget *parent) :
     if(database.open())
 {
         QString welcome;
-        QString mail;
-         QSqlQuery query("SELECT ime FROM users WHERE id = 1");
+         QSqlQuery query("SELECT ime FROM users WHERE email = :email");
+         query.bindValue(":email", mailPrvi);
          while (query.next()) {
              welcome.append("Dobrodosao " + query.value(0).toString() + " ");
 
@@ -33,12 +37,38 @@ Dashboard::Dashboard(QWidget *parent) :
       ui->stackedWidget->setCurrentIndex(0);
       if(database.open())
   {
+
+          QSqlQuery qry;
+          qry.prepare("SELECT * FROM artikli");
+          qry.exec();
+            ui->stanje->setText("Trenutno stanje bicikala: " + QString::number(qry.size()));
+          }
+      if(database.open())
+  {
+
+          QSqlQuery query;
+          query.prepare("SELECT cijena FROM artikli");
+          if(!query.exec()){
+
+              QMessageBox::information(this,"Greska","Neuspjesan query");
+          }
+          else{
+              while(query.next()){
+                  suma +=  query.value(0).toInt();
+              }
+              ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
+
+      }
+}
+      if(database.open())
+  {
           QSqlQueryModel * modal = new QSqlQueryModel();
           QSqlQuery* qry = new QSqlQuery(database);
           qry->prepare("select naziv,cijena,ram,brzina,stanje from artikli");
           qry->exec();
           modal->setQuery(*qry);
           ui->tableView->setModel(modal);
+
 
       }
       else{
@@ -91,6 +121,8 @@ void Dashboard::on_pushButton_2_clicked()
 
         if(qry.exec()){
             QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
+            suma +=  qry.value(1).toInt();
+            ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
         }
         else{
              QMessageBox::information(this,"Nije ubacen u bazu","Neuspjesno");
@@ -116,8 +148,10 @@ void Dashboard::on_pushButton_3_clicked()
         qry->exec();
         modal->setQuery(*qry);
         ui->tableView->setModel(modal);
-
+        ui->stanje->setText("Trenutno stanje bicikala: " + QString::number(qry->size()));
     }
+
+
     else{
           QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
@@ -126,4 +160,16 @@ void Dashboard::on_pushButton_3_clicked()
 
 }
 
+
+
+void Dashboard::on_noviArtikal_2_clicked()
+{
+        ui->stackedWidget->setCurrentIndex(2);
+}
+
+
+void Dashboard::on_pushButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
