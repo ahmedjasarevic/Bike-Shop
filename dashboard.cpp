@@ -19,12 +19,22 @@ Dashboard::Dashboard(QWidget *parent) :
     database.setUserName("root");
     database.setPassword("");
     database.setDatabaseName("qt5register");
-    QSqlQueryModel * modal = new QSqlQueryModel();
-    QSqlQuery* qry = new QSqlQuery(database);
-    qry->prepare("select naziv,cijena,ram,brzina,stanje from artikli");
-    qry->exec();
-    modal->setQuery(*qry);
-    ui->tableView->setModel(modal);
+      ui->stackedWidget->setCurrentIndex(0);
+
+      if(database.open())
+  {
+          QSqlQueryModel * modal = new QSqlQueryModel();
+          QSqlQuery* qry = new QSqlQuery(database);
+          qry->prepare("select naziv,cijena,ram,brzina,stanje from artikli");
+          qry->exec();
+          modal->setQuery(*qry);
+          ui->tableView->setModel(modal);
+
+      }
+      else{
+            QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+   }
 
 
 }
@@ -104,4 +114,5 @@ void Dashboard::on_pushButton_3_clicked()
 
 
 }
+
 
