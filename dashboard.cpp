@@ -229,6 +229,8 @@ void Dashboard::on_pushButton_5_clicked()
         qry2.bindValue(":nazivArtikla", naziv);
         qry2.bindValue(":cijenaArtikla", cijena);
         if(qry2.exec()){
+                 suma2 +=  qry2.value(1).toInt();
+                  ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
                     QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
                 }
                 else{
@@ -269,7 +271,6 @@ void Dashboard::on_ucitajTransakcije_clicked()
         QSqlQuery* qry = new QSqlQuery(database);
         qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
         qry->exec();
-        suma2 +=  qry->value(0).toInt();
         modal->setQuery(*qry);
         ui->tableView_2->setModel(modal);
 
