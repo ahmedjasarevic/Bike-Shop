@@ -50,6 +50,25 @@ Dashboard::Dashboard(QWidget *parent) :
 
       }
 }
+
+      if(database.open())
+  {
+
+          QSqlQuery query;
+          query.prepare("SELECT cijenaArtikla FROM transakcije");
+          if(!query.exec()){
+
+              QMessageBox::information(this,"Greska","Neuspjesan query");
+          }
+          else{
+              while(query.next()){
+                  suma2 +=  query.value(0).toInt();
+              }
+                ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
+
+      }
+
+  }
       if(database.open())
   {
           QSqlQueryModel * modal = new QSqlQueryModel();
@@ -82,8 +101,6 @@ Dashboard::Dashboard(QWidget *parent) :
                QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
       }
-
-
 
 }
 
@@ -141,6 +158,7 @@ void Dashboard::on_pushButton_2_clicked()
          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
 }
+
 
 }
 
@@ -221,6 +239,7 @@ void Dashboard::on_pushButton_5_clicked()
           QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
  }
+
 }
 
 
@@ -243,12 +262,14 @@ void Dashboard::on_tableView_clicked(const QModelIndex &index)
 void Dashboard::on_ucitajTransakcije_clicked()
 {
 
+
     if(database.open())
 {
         QSqlQueryModel * modal = new QSqlQueryModel();
         QSqlQuery* qry = new QSqlQuery(database);
         qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
         qry->exec();
+        suma2 +=  qry->value(0).toInt();
         modal->setQuery(*qry);
         ui->tableView_2->setModel(modal);
 
@@ -260,6 +281,7 @@ void Dashboard::on_ucitajTransakcije_clicked()
 
  }
 
+ ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
 
 }
 

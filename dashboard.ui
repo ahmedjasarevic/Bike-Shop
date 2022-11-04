@@ -467,10 +467,10 @@ border-radius: 15px;</string>
      <widget class="QLabel" name="stanje_2">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>30</y>
+        <x>210</x>
+        <y>0</y>
         <width>181</width>
-        <height>31</height>
+        <height>41</height>
        </rect>
       </property>
       <property name="font">
@@ -516,6 +516,24 @@ border-radius:15px;</string>
         <width>231</width>
         <height>261</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="stanjeArtikalaBAM">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:red;
+color:white;
+</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

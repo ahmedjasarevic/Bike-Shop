@@ -49,7 +49,7 @@ private:
      QSqlDatabase database;
       QString imePrvi;
         int brojac = 0;
-        int suma = 0;
+        int suma = 0,suma2 = 0;
           QString naziv,cijena,val;
 };
 
