@@ -5,7 +5,7 @@
 
 Dashboard::Dashboard(QString text, QWidget *parent) : QDialog(parent)
 {
-    mailPrvi = text;
+    imePrvi = text;
 }
 
 Dashboard::Dashboard(QWidget *parent) :
@@ -23,18 +23,8 @@ Dashboard::Dashboard(QWidget *parent) :
     database.setUserName("root");
     database.setPassword("");
     database.setDatabaseName("qt5register");
-    if(database.open())
-{
-        QString welcome;
-         QSqlQuery query("SELECT ime FROM users WHERE email = :email");
-         query.bindValue(":email", mailPrvi);
-         while (query.next()) {
-             welcome.append("Dobrodosao " + query.value(0).toString() + " ");
-
-         }
-         ui->dobrodosli->setText(welcome);
-    }
       ui->stackedWidget->setCurrentIndex(0);
+      ui->dobrodosli->setText("Dobrodosao " + imePrvi);
       if(database.open())
   {
 
@@ -75,6 +65,24 @@ Dashboard::Dashboard(QWidget *parent) :
             QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
    }
+      ui->stackedWidget->setCurrentIndex(0);
+         if(database.open())
+     {
+             QSqlQueryModel * modal = new QSqlQueryModel();
+             QSqlQuery* qry = new QSqlQuery(database);
+             qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
+             qry->exec();
+             modal->setQuery(*qry);
+             ui->tableView_2->setModel(modal);
+
+         }
+
+
+         else{
+               QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+      }
+
 
 
 }
@@ -171,5 +179,87 @@ void Dashboard::on_noviArtikal_2_clicked()
 void Dashboard::on_pushButton_4_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void Dashboard::on_pushButton_5_clicked()
+{
+    if(database.open())
+{
+        QSqlQuery qry;
+
+        qry.prepare("SELECT * FROM artikli WHERE naziv='"+val+"' OR cijena='"+val+"' OR ram='"+val+"' OR brzina='"+val+"' OR stanje='"+val+"'");
+        if(qry.exec()){
+        while(qry.next()){
+         naziv = qry.value(1).toString();
+         cijena = qry.value(2).toString();
+        }
+        ui->testLabel->setText("Cijena: " + cijena + "Naziv: " + naziv);
+        }
+
+    }
+
+    else{
+          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+ }
+    if(database.open())
+{
+    QSqlQuery qry2;
+        qry2.prepare("INSERT INTO transakcije (nazivArtikla,cijenaArtikla)"
+                    "VALUES (:nazivArtikla, :cijenaArtikla)");
+        qry2.bindValue(":nazivArtikla", naziv);
+        qry2.bindValue(":cijenaArtikla", cijena);
+        if(qry2.exec()){
+                    QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
+                }
+                else{
+                     QMessageBox::information(this,"Nije ubacen u bazu","Neuspjesno");
+                }
+    }
+    else{
+          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+ }
+}
+
+
+
+
+void Dashboard::on_tableView_activated(const QModelIndex &index)
+{
+    val  = ui->tableView->model()->data(index).toString();
+
+
+}
+
+
+void Dashboard::on_tableView_clicked(const QModelIndex &index)
+{
+    val  = ui->tableView->model()->data(index).toString();
+}
+
+
+void Dashboard::on_ucitajTransakcije_clicked()
+{
+
+    if(database.open())
+{
+        QSqlQueryModel * modal = new QSqlQueryModel();
+        QSqlQuery* qry = new QSqlQuery(database);
+        qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
+        qry->exec();
+        modal->setQuery(*qry);
+        ui->tableView_2->setModel(modal);
+
+    }
+
+
+    else{
+          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+ }
+
+
 }
 

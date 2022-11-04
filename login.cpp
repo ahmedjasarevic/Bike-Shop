@@ -40,12 +40,13 @@ void Login::on_pushButton_clicked()
     }
     else{
         while(query.next()){
+            QString imefromDB = query.value(1).toString();
             QString mailfromDB = query.value(2).toString();
             QString passfromDB = query.value(3).toString();
-           Dashboard *w = new Dashboard(mailfromDB, this);
             if(mailfromDB == mail && passfromDB == pass){
                  QMessageBox::information(this,"Uspjesno","Uspjesan login");
                  Dashboard dhboard;
+                 Dashboard *w = new Dashboard(imefromDB, this);
                  dhboard.setModal(true);
                  dhboard.exec();
             }

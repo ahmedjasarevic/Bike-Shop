@@ -34,12 +34,23 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_5_clicked();
+
+
+
+    void on_tableView_activated(const QModelIndex &index);
+
+    void on_tableView_clicked(const QModelIndex &index);
+
+    void on_ucitajTransakcije_clicked();
+
 private:
     Ui::Dashboard *ui;
      QSqlDatabase database;
-      QString mailPrvi;
+      QString imePrvi;
         int brojac = 0;
         int suma = 0;
+          QString naziv,cijena,val;
 };
 
 #endif // DASHBOARD_H
