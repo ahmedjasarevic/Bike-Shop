@@ -50,6 +50,7 @@ void Register::on_pushButton_clicked()
          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
 }
+    this->close();
 
 }
 

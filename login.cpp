@@ -44,6 +44,7 @@ void Login::on_pushButton_clicked()
             QString mailfromDB = query.value(2).toString();
             QString passfromDB = query.value(3).toString();
             if(mailfromDB == mail && passfromDB == pass){
+                  this->close();
                  QMessageBox::information(this,"Uspjesno","Uspjesan login");
                  Dashboard dhboard;
                  dhboard.postaviIme(imefromDB);
@@ -65,6 +66,7 @@ void Login::on_pushButton_clicked()
          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
     }
+
 
 }
 

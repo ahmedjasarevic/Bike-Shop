@@ -30,6 +30,10 @@ Dashboard::Dashboard(QWidget *parent) :
           qry.prepare("SELECT * FROM artikli");
           qry.exec();
             ui->stanje->setText("Trenutno stanje bicikala: " + QString::number(qry.size()));
+            if(qry.size() < 3){
+
+                QMessageBox::information(this,"Upozorenje","Preostalo " +  QString::number(qry.size()) + " bicikla");
+            }
           }
       if(database.open())
   {

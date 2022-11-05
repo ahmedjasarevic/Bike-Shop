@@ -95,6 +95,9 @@ border-bottom:2px solid rgba(105,118,132,255);
 color:white;
 padding-bottom:9px;</string>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
