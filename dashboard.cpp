@@ -1,12 +1,11 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
+#include <login.h>
+#include <ui_login.h>
 #include <QPixmap>
 #include <QPalette>
 
-Dashboard::Dashboard(QString text)
-{
-    imePrvi = text;
-}
+
 
 Dashboard::Dashboard(QWidget *parent) :
     QDialog(parent),
@@ -24,7 +23,6 @@ Dashboard::Dashboard(QWidget *parent) :
     database.setPassword("");
     database.setDatabaseName("qt5register");
       ui->stackedWidget->setCurrentIndex(0);
-      ui->dobrodosli->setText("Dobrodosao " + imePrvi);
       if(database.open())
   {
 
@@ -32,6 +30,10 @@ Dashboard::Dashboard(QWidget *parent) :
           qry.prepare("SELECT * FROM artikli");
           qry.exec();
             ui->stanje->setText("Trenutno stanje bicikala: " + QString::number(qry.size()));
+            qDebug() << qry.size();
+            if (qry.size() < 3){
+                   ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
+            }
           }
       if(database.open())
   {
@@ -89,7 +91,7 @@ Dashboard::Dashboard(QWidget *parent) :
      {
              QSqlQueryModel * modal = new QSqlQueryModel();
              QSqlQuery* qry = new QSqlQuery(database);
-             qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
+             qry->prepare("select nazivArtikla,cijenaArtikla,korisnik from transakcije");
              qry->exec();
              modal->setQuery(*qry);
              ui->tableView_2->setModel(modal);
@@ -110,7 +112,11 @@ Dashboard::~Dashboard()
     delete ui;
 }
 
+void Dashboard::postaviIme(const QString &ime){
+     imePrvi = ime;
+     ui->dobrodosli->setText("Dobrodosao " + imePrvi);
 
+}
 
 void Dashboard::on_noviArtikal_clicked()
 {
@@ -148,12 +154,16 @@ void Dashboard::on_pushButton_2_clicked()
             QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
             suma +=  qry.value(1).toInt();
             ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
+            if (qry.size() < 3){
+                   ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
+            }
+
         }
         else{
              QMessageBox::information(this,"Nije ubacen u bazu","Neuspjesno");
         }
+    }
 
-}
    else{
          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
@@ -212,9 +222,12 @@ void Dashboard::on_pushButton_5_clicked()
          id = qry.value(0).toString();
          naziv = qry.value(1).toString();
          cijena = qry.value(2).toString();
+         suma2 +=  qry.value(2).toInt();
+         ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
+         if (qry.size() < 3){
+                ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
+         }
         }
-        ui->testLabel->setText("Cijena: " + cijena + "Naziv: " + naziv);
-
         }
 
     }
@@ -226,10 +239,11 @@ void Dashboard::on_pushButton_5_clicked()
     if(database.open())
 {
     QSqlQuery qry2;
-        qry2.prepare("INSERT INTO transakcije (nazivArtikla,cijenaArtikla)"
-                    "VALUES (:nazivArtikla, :cijenaArtikla)");
+        qry2.prepare("INSERT INTO transakcije (nazivArtikla,cijenaArtikla,korisnik)"
+                    "VALUES (:nazivArtikla, :cijenaArtikla, :korisnik)");
         qry2.bindValue(":nazivArtikla", naziv);
         qry2.bindValue(":cijenaArtikla", cijena);
+        qry2.bindValue(":korisnik", imePrvi);
         if(qry2.exec()){
                  suma2 +=  qry2.value(1).toInt();
                   ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
@@ -288,7 +302,7 @@ void Dashboard::on_ucitajTransakcije_clicked()
 {
         QSqlQueryModel * modal = new QSqlQueryModel();
         QSqlQuery* qry = new QSqlQuery(database);
-        qry->prepare("select nazivArtikla,cijenaArtikla from transakcije");
+        qry->prepare("select nazivArtikla,cijenaArtikla,korisnik from transakcije");
         qry->exec();
         modal->setQuery(*qry);
         ui->tableView_2->setModel(modal);

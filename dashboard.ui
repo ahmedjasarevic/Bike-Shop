@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QFrame" name="frame">
@@ -221,14 +221,19 @@ border-radius:15px;</string>
       <string>PRODAJ</string>
      </property>
     </widget>
-    <widget class="QLabel" name="testLabel">
+    <widget class="QLabel" name="stanjeUpozorenje">
      <property name="geometry">
       <rect>
        <x>260</x>
-       <y>80</y>
+       <y>60</y>
        <width>291</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;
+color:white;
+</string>
      </property>
      <property name="text">
       <string/>
@@ -513,7 +518,7 @@ border-radius:15px;</string>
        <rect>
         <x>10</x>
         <y>100</y>
-        <width>231</width>
+        <width>271</width>
         <height>261</height>
        </rect>
       </property>

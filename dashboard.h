@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <login.h>
 #include <register.h>
+#include "ui_login.h"
 
 namespace Ui {
 class Dashboard;
@@ -15,7 +16,7 @@ class Dashboard : public QDialog
 
 public:
     explicit Dashboard(QWidget *parent = nullptr);
-    Dashboard(QString text);
+    void postaviIme(const QString &ime);
     ~Dashboard();
 
 
