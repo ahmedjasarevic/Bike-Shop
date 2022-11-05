@@ -45,8 +45,10 @@ void Login::on_pushButton_clicked()
             QString passfromDB = query.value(3).toString();
             if(mailfromDB == mail && passfromDB == pass){
                  QMessageBox::information(this,"Uspjesno","Uspjesan login");
+                 ui->testniLabel->setText(imefromDB);
+                  Dashboard *novoIme = new Dashboard(imefromDB);
+                 novoIme->setModal(true);
                  Dashboard dhboard;
-                 Dashboard *w = new Dashboard(imefromDB, this);
                  dhboard.setModal(true);
                  dhboard.exec();
             }

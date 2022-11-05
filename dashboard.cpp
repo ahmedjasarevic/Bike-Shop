@@ -3,7 +3,7 @@
 #include <QPixmap>
 #include <QPalette>
 
-Dashboard::Dashboard(QString text, QWidget *parent) : QDialog(parent)
+Dashboard::Dashboard(QString text)
 {
     imePrvi = text;
 }
@@ -209,10 +209,12 @@ void Dashboard::on_pushButton_5_clicked()
         qry.prepare("SELECT * FROM artikli WHERE naziv='"+val+"' OR cijena='"+val+"' OR ram='"+val+"' OR brzina='"+val+"' OR stanje='"+val+"'");
         if(qry.exec()){
         while(qry.next()){
+         id = qry.value(0).toString();
          naziv = qry.value(1).toString();
          cijena = qry.value(2).toString();
         }
         ui->testLabel->setText("Cijena: " + cijena + "Naziv: " + naziv);
+
         }
 
     }
@@ -233,9 +235,21 @@ void Dashboard::on_pushButton_5_clicked()
                   ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
                     QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
                 }
-                else{
-                     QMessageBox::information(this,"Nije ubacen u bazu","Neuspjesno");
-                }
+
+    }
+    else{
+          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
+
+ }
+
+
+    if(database.open())
+{
+    QSqlQuery qry3;
+      qry3.prepare("DELETE FROM artikli WHERE id='"+id+"'");
+                   if(qry3.exec()){
+                   QMessageBox::information(this,"Uspjesno","Prodan artikal");
+    }
     }
     else{
           QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
@@ -250,6 +264,11 @@ void Dashboard::on_pushButton_5_clicked()
 void Dashboard::on_tableView_activated(const QModelIndex &index)
 {
     val  = ui->tableView->model()->data(index).toString();
+    QPalette pal = ui->tableView->palette();
+    pal.setColor(QPalette::HighlightedText, QColor("black"));
+    pal.setColor(QPalette::Highlight, QColor("red"));
+    ui->tableView->setPalette(pal);
+
 
 
 }

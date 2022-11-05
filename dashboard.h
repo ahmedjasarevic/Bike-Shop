@@ -15,7 +15,7 @@ class Dashboard : public QDialog
 
 public:
     explicit Dashboard(QWidget *parent = nullptr);
-    explicit Dashboard(QString text, QWidget *parent = nullptr);
+    Dashboard(QString text);
     ~Dashboard();
 
 
@@ -50,7 +50,7 @@ private:
       QString imePrvi;
         int brojac = 0;
         int suma = 0,suma2 = 0;
-          QString naziv,cijena,val;
+          QString naziv,cijena,val,id;
 };
 
 #endif // DASHBOARD_H
