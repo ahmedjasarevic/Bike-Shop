@@ -25,7 +25,7 @@ background:url(:/new/prefix1/welcome.jpg)
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>-170</x>
+      <x>-130</x>
       <y>-30</y>
       <width>941</width>
       <height>551</height>
@@ -43,7 +43,7 @@ background:url(:/new/prefix1/welcome.jpg)
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>80</x>
        <y>10</y>
        <width>831</width>
        <height>521</height>
@@ -51,7 +51,7 @@ background:url(:/new/prefix1/welcome.jpg)
      </property>
      <property name="styleSheet">
       <string notr="true">border-image:url(:/new/prefix1/bikeshopwelcome.jpg);
-border-radius:20px;</string>
+</string>
      </property>
      <property name="text">
       <string/>

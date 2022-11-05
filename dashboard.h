@@ -45,6 +45,8 @@ private slots:
 
     void on_ucitajTransakcije_clicked();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::Dashboard *ui;
      QSqlDatabase database;

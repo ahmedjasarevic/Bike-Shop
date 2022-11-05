@@ -148,7 +148,7 @@ void Dashboard::on_pushButton_2_clicked()
 
         if(qry.exec()){
             QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
-            suma +=  qry.value(1).toInt();
+            suma +=  cijena.toInt();
             ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
         }
         else{
@@ -160,6 +160,16 @@ void Dashboard::on_pushButton_2_clicked()
          QMessageBox::information(this,"Nije povezana baza","Baza nije povezana");
 
 }
+    if(database.open())
+{
+        QSqlQueryModel * modal = new QSqlQueryModel();
+        QSqlQuery* qry = new QSqlQuery(database);
+        qry->prepare("select nazivArtikla,cijenaArtikla,korisnik from transakcije");
+        qry->exec();
+        modal->setQuery(*qry);
+        ui->tableView_2->setModel(modal);
+
+    }
 
 
 }
@@ -216,9 +226,7 @@ void Dashboard::on_pushButton_5_clicked()
          cijena = qry.value(2).toString();
          suma2 +=  qry.value(2).toInt();
          ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
-         if (qry.size() < 3){
-                ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
-         }
+
         }
         }
 
@@ -262,6 +270,7 @@ void Dashboard::on_pushButton_5_clicked()
 
  }
 
+
 }
 
 
@@ -270,10 +279,13 @@ void Dashboard::on_pushButton_5_clicked()
 void Dashboard::on_tableView_activated(const QModelIndex &index)
 {
     val  = ui->tableView->model()->data(index).toString();
-    QPalette pal = ui->tableView->palette();
-    pal.setColor(QPalette::HighlightedText, QColor("black"));
-    pal.setColor(QPalette::Highlight, QColor("red"));
-    ui->tableView->setPalette(pal);
+    const QColor hlClr = Qt::red;
+    const QColor txtClr = Qt::white;
+
+    QPalette p = palette();
+    p.setColor(QPalette::Highlight, hlClr);
+    p.setColor(QPalette::HighlightedText, txtClr);
+    setPalette(p);
 
 
 
@@ -283,6 +295,14 @@ void Dashboard::on_tableView_activated(const QModelIndex &index)
 void Dashboard::on_tableView_clicked(const QModelIndex &index)
 {
     val  = ui->tableView->model()->data(index).toString();
+    const QColor hlClr = Qt::red;
+    const QColor txtClr = Qt::white;
+
+    QPalette p = palette();
+    p.setColor(QPalette::Highlight, hlClr);
+    p.setColor(QPalette::HighlightedText, txtClr);
+    setPalette(p);
+
 }
 
 
@@ -298,6 +318,8 @@ void Dashboard::on_ucitajTransakcije_clicked()
         qry->exec();
         modal->setQuery(*qry);
         ui->tableView_2->setModel(modal);
+        suma +=  qry->value(1).toInt();
+        ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
 
     }
 
@@ -309,5 +331,11 @@ void Dashboard::on_ucitajTransakcije_clicked()
 
  ui->stanjeArtikalaBAM->setText("Prodani artikli (BAM) : " + QString::number(suma2));
 
+}
+
+
+void Dashboard::on_pushButton_6_clicked()
+{
+    this->close();
 }
 
