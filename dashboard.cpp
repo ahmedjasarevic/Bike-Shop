@@ -30,10 +30,6 @@ Dashboard::Dashboard(QWidget *parent) :
           qry.prepare("SELECT * FROM artikli");
           qry.exec();
             ui->stanje->setText("Trenutno stanje bicikala: " + QString::number(qry.size()));
-            qDebug() << qry.size();
-            if (qry.size() < 3){
-                   ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
-            }
           }
       if(database.open())
   {
@@ -154,10 +150,6 @@ void Dashboard::on_pushButton_2_clicked()
             QMessageBox::information(this,"Ubacenu u bazu","Uspjesno");
             suma +=  qry.value(1).toInt();
             ui->stanjeBAM->setText("Trenutno stanje bicikala (BAM) : " + QString::number(suma));
-            if (qry.size() < 3){
-                   ui->stanjeUpozorenje->setText("UPOZORENJE. Preostalo je : " + QString::number(qry.size()));
-            }
-
         }
         else{
              QMessageBox::information(this,"Nije ubacen u bazu","Neuspjesno");
