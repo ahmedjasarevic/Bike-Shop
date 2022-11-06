@@ -1,7 +1,7 @@
 
 # Bike Shop
 
-The main goal of the application is to make the work of the owner of a bicycle shop easier.
+The main goal of the application is to make the work of the owner of a bicycle shop easier.Bike shop is created using Qt Creator (Widget App), C++, SQL.
 
 
 # Features
