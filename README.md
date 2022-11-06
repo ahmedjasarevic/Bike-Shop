@@ -1,25 +1,25 @@
 
 # Bike Shop
 
-Cilj aplikacije je da vlasniku prodavnice za prodaju bicikala olaksa rad.
+The main goal of the application is to make the work of the owner of a bicycle shop easier.
 
 
-# Funkcionalnosti
+# Features
 
-- Aplikaciji imaju pristup samo registrovani korisnici (login i registracijska forma, autentikacija korisnika)
-- Tab sa prikazom artikala
-- Tab za kreiranje artikala (ukljucujuci atribute bicikla kao sto su cijena, velicina rama, stanje (nov, polovan), broj brzina itd)
-- Tab za dashboard - pocetna stranica ukljucuje dashboard, tj. jednostavan uvid korisnika u trenutno stanje (broj dostupnih bicikala) i estimaciju prihoda u [BAM] na osnovu aktivnih artikala
-- Tab historija transakcija omogucava jednostavan uvid u zavrsene transakcije nudeci statisticki prikaz bicikala koji se najvise prodaju (i druge korisne statisticke parametre)
-## Pocetna stranica
+- Only registered users have access to the application (login and register form, user authentication)
+- Tab that shows all bikes
+- Tab for creating bikes(including bicycle attributes such as price, frame size, condition ( new, used), number of gears)  
+- Tab for Dashboard - the home page includes the dashboard, simple user insight into the current state (number of available bikes) and revenue estimation in [BAM] based on active items
+- Tab for the transaction history provides a simple overview of completed transactions, offering a statistical display of the most sold bikes (and other useful statistical parameters).
+## Home page
 ![pocetnastranica](Screenshots/pocetnastranica.png)
-## Registracija
+## Register
 ![Registracija](Screenshots/register.png)
 ## Login
 ![Login](Screenshots/login.png)
 ## Dashboard
 ![Dashboard](Screenshots/dashboard.png)
-## Dodaj artikal
+## Add new bike
 ![Dodaj artikal](Screenshots/dodajartikal.png)
-## Historija transakcija
+## Transaction history
 ![Historija transakcija](Screenshots/transakcije.png)
