@@ -20,6 +20,6 @@ The main goal of the application is to make the work of the owner of a bicycle s
 ## Dashboard
 ![Dashboard](Screenshots/dashboard.png)
 ## Add new bike
-![Dodaj artikal](Screenshots/dodajartikal.png)
+![Dodaj artikal](Screenshots/noviartikal.png)
 ## Transaction history
 ![Historija transakcija](Screenshots/transakcije.png)
