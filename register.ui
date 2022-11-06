@@ -48,9 +48,9 @@ border-radius:9px;</string>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>360</y>
-      <width>151</width>
+      <x>850</x>
+      <y>480</y>
+      <width>171</width>
       <height>41</height>
      </rect>
     </property>
@@ -65,8 +65,8 @@ border-radius: 15px;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>740</x>
-      <y>70</y>
+      <x>760</x>
+      <y>170</y>
       <width>381</width>
       <height>71</height>
      </rect>
@@ -89,17 +89,17 @@ border-radius: 15px;</string>
 font:15px;</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:700;&quot;&gt;REGISTRACIJA KORISNIKA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:20pt; font-weight:700; color:#ffffff;&quot;&gt;REGISTRACIJA KORISNIKA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::MarkdownText</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>730</x>
-      <y>160</y>
+      <y>270</y>
       <width>411</width>
       <height>181</height>
      </rect>
@@ -112,7 +112,8 @@ font:15px;</string>
 border:none;
 border-bottom:2px solid rgba(105,118,132,255);
 color:white;
-padding-bottom:9px;</string>
+padding-bottom:9px;
+bold;</string>
        </property>
       </widget>
      </item>

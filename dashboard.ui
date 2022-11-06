@@ -47,7 +47,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <widget class="QFrame" name="frame">
@@ -131,7 +131,7 @@ border-radius:15px;</string>
         <rect>
          <x>490</x>
          <y>0</y>
-         <width>261</width>
+         <width>231</width>
          <height>51</height>
         </rect>
        </property>
@@ -273,8 +273,8 @@ color:#fff;</string>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>-30</x>
-          <y>-20</y>
+          <x>-50</x>
+          <y>10</y>
           <width>1251</width>
           <height>681</height>
          </rect>
@@ -318,33 +318,6 @@ border-radius: 15px;</string>
         </property>
         <property name="text">
          <string>DODAJ</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>100</y>
-          <width>211</width>
-          <height>61</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>-1</pointsize>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:white;
-font:15px;</string>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;DODAJ NOVI ARTIKAL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::MarkdownText</enum>
         </property>
        </widget>
        <widget class="QWidget" name="layoutWidget">
@@ -414,6 +387,33 @@ padding-bottom:9px;</string>
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="stanje_3">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>10</y>
+          <width>1211</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:green;
+color:white;
+</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#ffffff;&quot;&gt;DODAJ NOVI ARTIKAL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::MarkdownText</enum>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QWidget" name="page_2">
@@ -468,9 +468,9 @@ border-radius: 15px;</string>
        <widget class="QLabel" name="stanje_2">
         <property name="geometry">
          <rect>
-          <x>210</x>
+          <x>0</x>
           <y>0</y>
-          <width>181</width>
+          <width>1211</width>
           <height>41</height>
          </rect>
         </property>
@@ -481,12 +481,12 @@ border-radius: 15px;</string>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:red;
+         <string notr="true">background-color:green;
 color:white;
 </string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#ffffff;&quot;&gt;Historija transakcija&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700; color:#ffffff;&quot;&gt;Historija transakcija&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="textFormat">
          <enum>Qt::MarkdownText</enum>
@@ -495,8 +495,8 @@ color:white;
        <widget class="QPushButton" name="ucitajTransakcije">
         <property name="geometry">
          <rect>
-          <x>80</x>
-          <y>560</y>
+          <x>100</x>
+          <y>580</y>
           <width>131</width>
           <height>41</height>
          </rect>
@@ -513,7 +513,7 @@ border-radius:15px;</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>120</y>
+          <y>140</y>
           <width>361</width>
           <height>421</height>
          </rect>
@@ -523,15 +523,15 @@ border-radius:15px;</string>
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>60</y>
-          <width>181</width>
-          <height>31</height>
+          <y>90</y>
+          <width>191</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color:red;
 color:white;
-</string>
+border-radius:15px;</string>
         </property>
         <property name="text">
          <string/>
