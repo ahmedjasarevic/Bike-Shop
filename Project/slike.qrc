@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>bikeshopwelcome.jpg</file>
+        <file>welcome.jpg</file>
+        <file>biciklo.jpg</file>
+        <file>biciklo2.jpeg</file>
+        <file>biciklo3.jpg</file>
+        <file>dashboard.jpg</file>
+        <file>dodajartikal.jpg</file>
+        <file>RD53383-scaled.jpg</file>
+    </qresource>
+</RCC>
