@@ -12,14 +12,14 @@ The main goal of the application is to make the work of the owner of a bicycle s
 - Tab for Dashboard - the home page includes the dashboard, simple user insight into the current state (number of available bikes) and revenue estimation in [BAM] based on active items
 - Tab for the transaction history provides a simple overview of completed transactions, offering a statistical display of the most sold bikes (and other useful statistical parameters).
 ## Home page
-![pocetnastranica](Screenshots/pocetnastranica.png)
+![pocetnastranica](Project/Screenshots/pocetnastranica.png)
 ## Register
-![Registracija](Screenshots/register.png)
+![Registracija](Project/Screenshots/register.png)
 ## Login
-![Login](Screenshots/login.png)
+![Login](Project/Screenshots/login.png)
 ## Dashboard
-![Dashboard](Screenshots/dashboard.png)
+![Dashboard](Project/Screenshots/dashboard.png)
 ## Add new bike
-![Dodaj artikal](Screenshots/noviartikal.png)
+![Dodaj artikal](Project/Screenshots/noviartikal.png)
 ## Transaction history
-![Historija transakcija](Screenshots/transakcije.png)
+![Historija transakcija](Project/Screenshots/transakcije.png)
